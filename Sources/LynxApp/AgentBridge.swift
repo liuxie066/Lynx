@@ -106,6 +106,15 @@ extension AppStore {
 
 enum AgentSkill: String, CaseIterable {
     case codex = "Codex", claude = "Claude Code"
+    struct Status {
+        let installed: Bool
+        let installation: String
+        let client: String
+    }
+    // Inspect at page/activation/action boundaries, not during every view body update.
+    func status() -> Status {
+        Status(installed: installed, installation: installationStatus, client: clientStatus)
+    }
     var folder: URL {
         FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent(self == .codex ? ".agents/skills/lynx" : ".claude/skills/lynx")
     }
