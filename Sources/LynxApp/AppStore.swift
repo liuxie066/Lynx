@@ -39,6 +39,10 @@ import LynxCore
         try await BrokerScanner(port: port).scan(market: market, stocks: stocks)
     }
 
+    var resolve: @Sendable (UInt16, Market, String) async throws -> WatchStock = { port, market, query in
+        try await BrokerScanner(port: port).resolve(market: market, query: query)
+    }
+
     init(preview: Bool = CommandLine.arguments.contains("--preview"), configurationURL: URL? = nil) {
         self.preview = preview
         let support = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
@@ -132,7 +136,8 @@ import LynxCore
         configuration.stocks.append(stock); invalidate(stock.market); save()
     }
     func resolveAndAdd(_ query: String, market: Market) async throws -> WatchStock {
-        let stock = try await BrokerScanner(port: configuration.port).resolve(market: market, query: query)
+        let stock = try await resolve(configuration.port, market, query)
+        try Task.checkCancellation()
         try insertStock(stock)
         if let storageError { throw AnalysisError.message(storageError) }
         return stock
