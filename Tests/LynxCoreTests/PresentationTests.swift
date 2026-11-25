@@ -1,4 +1,6 @@
 import Foundation
+import AppKit
+import SwiftUI
 import Testing
 @testable import LynxCore
 @testable import LynxApp
@@ -79,4 +81,23 @@ private func presentationResult(stocks: Int, contracts: Int, strategy: Strategy 
         Issue.record("Cancelled request unexpectedly succeeded")
     } catch is CancellationError { }
     #expect(store.configuration.stocks == before)
+}
+
+@Test @MainActor func nativeInputEditsCurrentStockAfterBindingChanges() throws {
+    let store = AppStore(preview: true)
+    let stocks = store.stocks
+    #expect(stocks.count >= 2)
+    let first = store.settings(stockID: stocks[0].id, strategy: .csp).maxStrike
+    let second = store.settings(stockID: stocks[1].id, strategy: .csp).maxStrike
+    let input = RoundedInput(placeholder: "", text: first, label: "最高行权价")
+    let coordinator = input.makeCoordinator()
+    let field = NSTextField()
+    field.stringValue = "200"
+    coordinator.controlTextDidChange(Notification(name: NSControl.textDidChangeNotification, object: field))
+    #expect(first.wrappedValue == "200")
+    coordinator.parent = RoundedInput(placeholder: "", text: second, label: "最高行权价")
+    field.stringValue = "300"
+    coordinator.controlTextDidChange(Notification(name: NSControl.textDidChangeNotification, object: field))
+    #expect(second.wrappedValue == "300")
+    #expect(first.wrappedValue == "200")
 }
