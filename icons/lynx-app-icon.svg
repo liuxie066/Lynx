@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="28%" r="76%">
+      <stop offset="0%" stop-color="#1E1E24"/>
+      <stop offset="70%" stop-color="#0B0B0F"/>
+      <stop offset="100%" stop-color="#060608"/>
+    </radialGradient>
+    <linearGradient id="ul" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E6E6EE"/>
+    </linearGradient>
+    <linearGradient id="ur" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D4D4DE"/>
+      <stop offset="100%" stop-color="#A6A6B2"/>
+    </linearGradient>
+    <linearGradient id="ll" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8A8A96"/>
+      <stop offset="100%" stop-color="#60606C"/>
+    </linearGradient>
+    <linearGradient id="lr" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FAFAFF"/>
+      <stop offset="100%" stop-color="#D4D4DE"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <path d="M 244.00 234.00 Q 244.00 218.00 257.15 227.12 L 481.85 382.88 Q 495.00 392.00 495.00 408.00 L 495.00 524.00 Q 495.00 540.00 479.33 536.75 L 259.67 491.25 Q 244.00 488.00 244.00 472.00 Z" fill="url(#ul)"/>
+  <path d="M 766.85 227.12 Q 780.00 218.00 780.00 234.00 L 780.00 472.00 Q 780.00 488.00 764.33 491.25 L 544.67 536.75 Q 529.00 540.00 529.00 524.00 L 529.00 408.00 Q 529.00 392.00 542.15 382.88 Z" fill="url(#ur)"/>
+  <path d="M 270.33 538.22 Q 260.00 526.00 275.68 529.20 L 479.32 570.80 Q 495.00 574.00 495.00 590.00 L 495.00 788.00 Q 495.00 804.00 484.67 791.78 Z" fill="url(#ll)"/>
+  <path d="M 748.32 529.20 Q 764.00 526.00 753.67 538.22 L 539.33 791.78 Q 529.00 804.00 529.00 788.00 L 529.00 590.00 Q 529.00 574.00 544.68 570.80 Z" fill="url(#lr)"/>
+</svg>
